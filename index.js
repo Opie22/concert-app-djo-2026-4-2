@@ -1,30 +1,23 @@
 let express = require("express");
-let app = new express();                                                                     
+let app = new express();
 
-// set up database connection
+app.set("view engine", "ejs");
+
 const knex = require("knex")({
- client: "mysql",
- connection: {
-  host:"concert-db.cy52qe0igrdf.us-east-1.rds.amazonaws.com",
-  user: "admin",
-  password: "Password1",
-  database:"paradise-concerts",
-  port: 3306,
- },
+  client: "mysql",
+  connection: {
+    host: "YOUR-CURRENT-RDS-ENDPOINT",
+    user: "admin",
+    password: "YOUR-CURRENT-PASSWORD",
+    database: "paradise-concerts",
+    port: 3306,
+  },
 });
 
-app.get("/",(req,res) => {
- knex
- .select()
- .from("venues")
- .then((result) => {
- let html = "<body><ul>";
- for (let i=0;i<result.length;i++) {
-  html += "<li>" + result[i].location + "</li>";
- }
-  html += "</body>"
-  res.send(html);
- }); 
+app.get("/", (req, res) => {
+  knex.select().from("venues").then((result) => {
+    res.render("index", { aConcerts: result });
+  });
 });
+
 app.listen(3000);
-
