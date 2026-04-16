@@ -1,0 +1,34 @@
+<html>
+<head>
+  <title>Concert Sponsor - Paradise Donut Company</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 30px; background: #fff8f0; }
+    h1 { color: #c0392b; }
+    table { border-collapse: collapse; width: 600px; margin-top: 20px; }
+    table, td, th { border: 2px solid orange; }
+    th { background-color: #f39c12; color: white; padding: 10px; }
+    td { padding: 8px 12px; }
+    tr:nth-child(even) { background-color: #fef9ef; }
+  </style>
+</head>
+<body>
+  <h1>🍩 Paradise Donut Company — Concert Tour</h1>
+  <p>Here are the upcoming concert locations and featured donuts:</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Concert Location</th>
+        <th>Featured Donut</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% for (let iCount = 0; iCount < aConcerts.length; iCount++) { %>
+      <tr>
+        <td><%= aConcerts[iCount].location %></td>
+        <td><%= aConcerts[iCount].featured_donut %></td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+</body>
+</html>
